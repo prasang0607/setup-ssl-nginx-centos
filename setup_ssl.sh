@@ -1,3 +1,7 @@
+# cd into script directory
+scriptdir="$(dirname "$0")"
+cd "$scriptdir"
+
 printf "\n----- Installing Nginx -----\n"
 sudo yum -y install epel-release
 sudo yum -y install nginx firewalld
