@@ -6,7 +6,7 @@ printf "\n----- Installing Nginx -----\n"
 sudo yum -y install epel-release
 sudo yum -y install nginx firewalld
 
-printf "\n----- Staring Nginx and Firewalld -----\n" 
+printf "\n----- Staring Nginx and firewalld -----\n" 
 sudo systemctl start nginx
 sudo systemctl enable nginx
 sudo systemctl status nginx --no-pager 
@@ -15,13 +15,13 @@ sudo systemctl enable firewalld
 sudo systemctl status firewalld --no-pager  
 
 printf "\n----- Configuring Firewall -----\n"
-sleep 2
+sleep 1
 sudo firewall-cmd --add-service=http
 sudo firewall-cmd --add-service=https
 sudo firewall-cmd --runtime-to-permanent
 
 printf "\n----- Configuring IP Table -----\n"
-sleep 2
+sleep 1
 sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 
