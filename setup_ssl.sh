@@ -6,13 +6,13 @@ printf "\n----- Installing Nginx -----\n"
 sudo yum -y install epel-release
 sudo yum -y install nginx firewalld
 
-printf "\n----- Staring Nginx and firewalld -----\n" 
+printf "\n----- Staring Nginx and firewalld -----\n"
 sudo systemctl start nginx
 sudo systemctl enable nginx
-sudo systemctl status nginx --no-pager 
+sudo systemctl status nginx --no-pager
 sudo systemctl start firewalld
 sudo systemctl enable firewalld
-sudo systemctl status firewalld --no-pager  
+sudo systemctl status firewalld --no-pager
 
 printf "\n----- Configuring Firewall -----\n"
 sleep 1
@@ -38,12 +38,13 @@ printf "\n----- Configuring Nginx to Use SSL -----\n"
 sleep 2
 sudo cp ./ssl.conf /etc/nginx/conf.d/ssl.conf
 sudo cp ./ssl-redirect.conf /etc/nginx/default.d/ssl-redirect.conf
+# use this when moving files instead of copy to keep permissions intact
 # restorecon -v -R /etc/nginx
 
 printf "\n----- Enable the Changes in Nginx -----\n"
 sleep 1
 sudo nginx -t
 sudo systemctl restart nginx
-sudo systemctl status nginx --no-pager 
+sudo systemctl status nginx --no-pager
 
 printf "\n\n----- SSL Configuration Done -----\n\n"
