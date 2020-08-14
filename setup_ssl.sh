@@ -29,7 +29,9 @@ printf "\n----- Generating Certificate and Key -----\n"
 sleep 1
 sudo mkdir /etc/ssl/private
 sudo chmod 700 /etc/ssl/private/
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -config ./setup_ssl.conf
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt \
+    -subj "/C=IN/ST=DummyST/L=DummyL/O=DummyO/OU=DummyDept/CN=<YOUR_IP_OR_FQDN>"
 
 printf "\n----- Creating a strong Diffie-Hellman Group -----\n"
 sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
